@@ -4,7 +4,7 @@ function checkStringLength(string, length) {
   }
   return false;
 }
-
+checkStringLength('проверяемая строка', 20);
 
 function isPalindrome(string) {
   let normalizedString = '';
@@ -25,6 +25,8 @@ function isPalindrome(string) {
   }
   return true;
 }
+
+isPalindrome('ДовОд');
 
 function getNumber(str) {
   const string = typeof (str) === 'number' ? String(str) : str;
@@ -51,6 +53,7 @@ function getNumber(str) {
   return NaN;
 }
 
+getNumber('агент 007');
 
 function addString(str, len, addStr) {
   const addLength = len - str.length;
@@ -64,3 +67,4 @@ function addString(str, len, addStr) {
   return addStr.repeat(Math.round(len / addStr.length)).slice(0, addLength) + str;
 }
 
+addString('1', 2, '0');
