@@ -80,5 +80,3 @@ function createComments() {
 }
 
 const photos = Array.from({ length: MAX_PHOTOS_QUANTITY }, createPhoto);
-
-console.log(photos);
