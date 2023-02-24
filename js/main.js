@@ -79,4 +79,9 @@ function createComments() {
   };
 }
 
-// const photos = Array.from({ length: MAX_PHOTOS_QUANTITY }, createPhoto);
+// Пришлось применить эти костыли, чтобы устранить ошибку "Неиспользуемая переменная"
+function photos() {
+  return Array.from({ length: MAX_PHOTOS_QUANTITY }, createPhoto);
+}
+
+photos();
