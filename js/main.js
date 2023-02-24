@@ -79,4 +79,4 @@ function createComments() {
   };
 }
 
-const photos = Array.from({ length: MAX_PHOTOS_QUANTITY }, createPhoto);
+// const photos = Array.from({ length: MAX_PHOTOS_QUANTITY }, createPhoto);
