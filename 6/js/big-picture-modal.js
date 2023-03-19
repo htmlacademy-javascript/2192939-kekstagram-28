@@ -46,6 +46,7 @@ export const bigPictureModal = (pictures) => {
 
   const closeBigPictureModal = () => {
     bigPictureOpenElement.classList.add('hidden');
+    document.body.classList.remove('modal-open');
     document.removeEventListener('keydown', (evt) => {
       if (isEscapeKey(evt)) {
         evt.preventDefault();
