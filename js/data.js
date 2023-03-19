@@ -4,7 +4,7 @@ import { MESSAGES, NAMES, DESCRIPTIONS, MIN_COMMENTS_QUANTITY, MAX_COMMENTS_QUAN
 
 const createComments = () => ({
   id: idCommentGenerator(),
-  avatar: `img/avatar-${getRandomInteger(0, 6)}.svg`,
+  avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
   message: createRandomElement(MESSAGES),
   name: createRandomElement(NAMES),
 });

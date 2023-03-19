@@ -6,6 +6,7 @@ export const addPictures = (pictures) => {
   pictures.forEach((pic) => {
     const picture = pictureTemplate.cloneNode(true);
 
+    picture.querySelector('img').id = pic.id;
     picture.querySelector('img').src = pic.url;
     picture.querySelector('img').alt = pic.description;
     picture.querySelector('.picture__comments').textContent = pic.comments.length;
