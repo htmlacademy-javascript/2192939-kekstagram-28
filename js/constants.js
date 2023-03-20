@@ -23,4 +23,6 @@ export const MESSAGES = [
 ];
 export const MAX_PHOTOS_QUANTITY = 25;
 export const MIN_COMMENTS_QUANTITY = 3;
-export const MAX_COMMENTS_QUANTITY = 10;
+export const MAX_COMMENTS_QUANTITY = 20;
+
+export const AMOUNT_LOADED_COMMENTS = 5;
