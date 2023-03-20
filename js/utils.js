@@ -29,4 +29,4 @@ export const idCommentGenerator = generateRandomId(1, 500, getRandomInteger);
 
 export const createRandomElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-export const isEscapeKey = (evt) => evt.key === 'Escape';
+export const isEscapeKey = (evt) => evt.keyCode === 27;
