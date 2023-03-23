@@ -2,6 +2,7 @@ import { isEscapeKey } from './utils.js';
 import { AMOUNT_LOADED_COMMENTS } from './constants.js';
 
 const picturesGallery = document.querySelector('.pictures');
+const pictureGalleryChild = document.querySelector('.img-upload');
 const bigPictureOpenElement = document.querySelector('.big-picture');
 const bigPictureCancelElement = bigPictureOpenElement.querySelector('.big-picture__cancel');
 const commentsLoader = bigPictureOpenElement.querySelector('.social__comments-loader');
@@ -83,3 +84,5 @@ export const bigPictureModal = (pictures) => {
     createComments();
   });
 };
+
+pictureGalleryChild.addEventListener('click', (evt) => evt.stopPropagation());
