@@ -55,31 +55,29 @@ const closeEffect = () => {
 };
 
 const changeEffect = (effect, evt) => {
-  if (effect) {
-    effectLevel.classList.remove('hidden');
-    effectImage.className = '';
-    effectImage.classList.add(CLASS_NAME + effect);
+  effectLevel.classList.remove('hidden');
+  effectImage.className = '';
+  effectImage.classList.add(CLASS_NAME + effect);
 
-    indexEffect = EFFECTS.findIndex((item) => evt.target.value === item.name);
+  indexEffect = EFFECTS.findIndex((item) => evt.target.value === item.name);
 
-    effectLevelSlider.noUiSlider.updateOptions({
-      range: {
-        min: EFFECTS[indexEffect].min,
-        max: EFFECTS[indexEffect].max,
-      },
-      start: EFFECTS[indexEffect].max,
-      step: EFFECTS[indexEffect].step,
-    });
-  }
-
+  effectLevelSlider.noUiSlider.updateOptions({
+    range: {
+      min: EFFECTS[indexEffect].min,
+      max: EFFECTS[indexEffect].max,
+    },
+    start: EFFECTS[indexEffect].max,
+    step: EFFECTS[indexEffect].step,
+  });
 
   const filter = (value) => `${EFFECTS[indexEffect].filter}(${value}${EFFECTS[indexEffect].unit})`;
+
   effectLevelSlider.noUiSlider.on('update', () => {
     effectLevelValue.value = effectLevelSlider.noUiSlider.get();
     effectImage.style.filter = filter(effectLevelValue.value);
-    console.log(effectImage.style.filter);
   });
 };
+
 
 export const getEffect = () => {
   noUiSlider.create(effectLevelSlider, {
@@ -93,11 +91,14 @@ export const getEffect = () => {
   });
 
   effectsList.addEventListener('click', (evt) => {
-    const effect = evt.target.value;
-    if (effect === 'none') {
-      closeEffect();
-    } else {
-      changeEffect(effect, evt);
+    if (evt.target.matches('input')) {
+      const effect = evt.target.value;
+      effectLevelSlider.noUiSlider.off();
+      if (effect === 'none') {
+        closeEffect();
+      } else {
+        changeEffect(effect, evt);
+      }
     }
   });
 };
