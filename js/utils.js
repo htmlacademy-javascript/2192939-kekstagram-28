@@ -1,32 +1,30 @@
-const generateId = () => {
-  let lastId = 0;
+const ALERT_SHOW_TIME = 5000;
 
-  return function () {
-    lastId += 1;
-    return lastId;
-  };
-};
-
-const generateRandomId = (min, max, getRandom) => {
-  const previosValues = [];
-  return function () {
-    let currentValue = getRandom(min, max);
-    while (previosValues.includes(currentValue)) {
-      currentValue = getRandom(min, max);
-    }
-    previosValues.push(currentValue);
-    return currentValue;
-  };
-};
 
 export const getRandomInteger = (min, max) => {
   const rand = min - 0.5 + Math.random() * (max - min + 1);
   return Math.round(rand);
 };
 
-export const idGenerator = generateId();
-export const idCommentGenerator = generateRandomId(1, 500, getRandomInteger);
-
-export const createRandomElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
-
 export const isEscapeKey = (evt) => evt.keyCode === 27;
+
+export const showAlert = (message) => {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = '100';
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = '0';
+  alertContainer.style.top = '0';
+  alertContainer.style.right = '0';
+  alertContainer.style.padding = '10px 3px';
+  alertContainer.style.fontSize = '30px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'red';
+
+  alertContainer.textContent = message;
+
+  document.body.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, ALERT_SHOW_TIME);
+};
