@@ -1,3 +1,5 @@
+import { resetEffect } from './effect.js';
+import { resetScale } from './scale-image.js';
 import { isEscapeKey } from './utils.js';
 
 const REGEXP = /^#[0-9a-zа-я]{1,19}\b/i;
@@ -11,7 +13,7 @@ const editImgForm = form.querySelector('.img-upload__overlay');
 const cancelEditImgForm = form.querySelector('#upload-cancel');
 const hashTags = form.querySelector('.text__hashtags');
 const description = form.querySelector('.text__description');
-const submitButton = form.querySelector('#upload-submit');
+const submitButton = form.querySelector('.img-upload__submit');
 
 export const closeEditImgForm = (func) => {
   editImgForm.classList.add('hidden');
@@ -23,12 +25,11 @@ export const closeEditImgForm = (func) => {
 const onEscapeDown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    console.log('form', evt.target);
     closeEditImgForm(onEscapeDown);
   }
 };
 
-const ignoreEscape = (evt) => {
+export const ignoreEscape = (evt) => {
   if (isEscapeKey(evt)) {
     evt.stopPropagation();
   }
@@ -37,7 +38,9 @@ const ignoreEscape = (evt) => {
 export const openEditImgForm = () => {
   editImgForm.classList.remove('hidden');
   document.body.classList.add('modal-open');
-  document.addEventListener('keydown', onEscapeDown);
+  document.body.addEventListener('keydown', onEscapeDown);
+  resetScale();
+  resetEffect();
 };
 
 inputUpload.addEventListener('change', () => {
@@ -116,11 +119,11 @@ pristine.addValidator(
 );
 
 const blockSubmitButton = () => {
-  submitButton.disable = true;
+  submitButton.disabled = true;
 };
 
 const unblockSubmitButton = () => {
-  submitButton.disable = false;
+  submitButton.disabled = false;
 };
 
 export const setUploadFormSubmit = (cb) => {

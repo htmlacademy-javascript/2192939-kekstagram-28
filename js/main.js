@@ -26,6 +26,6 @@ try {
   showAlert(err.message);
 }
 
-
 getScaleImage();
 getEffect();
+

@@ -49,9 +49,10 @@ const effectLevelSlider = effectLevel.querySelector('.effect-level__slider');
 const effectLevelValue = effectLevel.querySelector('.effect-level__value');
 let indexEffect;
 
-const closeEffect = () => {
+export const resetEffect = () => {
   effectLevel.classList.add('hidden');
   effectImage.className = '';
+  effectImage.style.filter = 'none';
 };
 
 const changeEffect = (effect, evt) => {
@@ -78,7 +79,6 @@ const changeEffect = (effect, evt) => {
   });
 };
 
-
 export const getEffect = () => {
   noUiSlider.create(effectLevelSlider, {
     range: {
@@ -95,7 +95,7 @@ export const getEffect = () => {
       const effect = evt.target.value;
       effectLevelSlider.noUiSlider.off();
       if (effect === 'none') {
-        closeEffect();
+        resetEffect();
       } else {
         changeEffect(effect, evt);
       }

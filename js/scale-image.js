@@ -10,9 +10,12 @@ const controlScale = document.querySelector('.scale__control--value');
 const imageScale = document.querySelector('.img-upload__preview');
 let currentScale;
 
-export const getScaleImage = () => {
+export const resetScale = () => {
+  imageScale.style.transform = `scale(${MAX_SCALE / PERCENT_100})`;
   controlScale.value = `${MAX_SCALE}%`;
+};
 
+export const getScaleImage = () => {
   buttonScaleBigger.addEventListener('click', () => {
     currentScale = parseInt(controlScale.value, REDIX) + STEP_SCALE;
 
@@ -23,6 +26,7 @@ export const getScaleImage = () => {
 
     imageScale.style.transform = `scale(${currentScale / PERCENT_100})`;
   });
+
   buttonScaleSmaller.addEventListener('click', () => {
     currentScale = parseInt(controlScale.value, REDIX) - STEP_SCALE;
     if (currentScale < MIN_SCALE) {
