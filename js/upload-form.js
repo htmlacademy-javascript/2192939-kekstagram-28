@@ -35,16 +35,18 @@ export const ignoreEscape = (evt) => {
   }
 };
 
-export const openEditImgForm = () => {
+export const openEditImgForm = (adress) => {
   editImgForm.classList.remove('hidden');
   document.body.classList.add('modal-open');
   document.body.addEventListener('keydown', onEscapeDown);
+  document.querySelector('.img-upload__preview img').src = adress;
   resetScale();
   resetEffect();
 };
 
 inputUpload.addEventListener('change', () => {
-  openEditImgForm();
+  const file = inputUpload.files[0];
+  openEditImgForm(URL.createObjectURL(file));
 });
 
 cancelEditImgForm.addEventListener('click', () => {
