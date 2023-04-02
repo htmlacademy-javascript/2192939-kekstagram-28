@@ -25,8 +25,8 @@ export const showSuccessMessage = () => {
     removeSuccesModal(onEscapeDown);
   }, { once: true });
 
-  successInner.addEventListener('click', (evt) => {
-    const withinBoundares = evt.composedPath().includes(successModal);
+  document.addEventListener('click', (evt) => {
+    const withinBoundares = evt.composedPath().includes(successInner);
 
     if (!withinBoundares) {
       removeSuccesModal(onEscapeDown);
@@ -57,6 +57,7 @@ export const showErrorMessage = () => {
       removeErrorModal(onEscapeDown);
     }
   };
+
   document.removeEventListener('keydown', onEscapeDown);
 
   errorButton.addEventListener('click', () => {
