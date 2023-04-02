@@ -1,4 +1,4 @@
-import { addPictures } from './add-pictures.js';
+import { filterPhotos, openFilters } from './filters.js';
 import { bigPictureModal } from './big-picture-modal.js';
 import { setUploadFormSubmit, closeEditImgForm } from './upload-form.js';
 import { getScaleImage } from './scale-image.js';
@@ -19,9 +19,10 @@ setUploadFormSubmit(async (data) => {
 });
 
 try {
-  const pictures = await getData();
-  addPictures(pictures);
-  bigPictureModal(pictures);
+  const photos = await getData();
+  openFilters();
+  filterPhotos(photos);
+  bigPictureModal(photos);
 } catch (err) {
   showAlert(err.message);
 }
