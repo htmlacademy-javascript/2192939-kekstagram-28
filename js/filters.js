@@ -79,14 +79,6 @@ export const loadPictures = (pictures) => {
   }
 };
 
-export const filterPhotos = (pictures) => {
-  addPictures(pictures);
-  setFilter(pictures,
-    loadDefaultPictures(pictures),
-    loadRandomPictures(pictures),
-    loadDiscussedPictures(pictures));
-};
-
 export const openFilters = () => {
   const filtersBlock = document.querySelector('.img-filters');
   filtersBlock.classList.remove('img-filters--inactive');
