@@ -7,7 +7,7 @@ const PERCENT_100 = 100;
 const buttonScaleBigger = document.querySelector('.scale__control--bigger');
 const buttonScaleSmaller = document.querySelector('.scale__control--smaller');
 const controlScale = document.querySelector('.scale__control--value');
-const imageScale = document.querySelector('.img-upload__preview');
+const imageScale = document.querySelector('.img-upload__preview img');
 let currentScale;
 
 export const resetScale = () => {

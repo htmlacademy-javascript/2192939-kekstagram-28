@@ -1,11 +1,10 @@
 import { addPictures } from './add-pictures.js';
-import { getRandomInteger, debounce } from './utils.js';
+import { getRandomInteger } from './utils.js';
 
 const DEFAULT = 'filter-default';
 const RANDOM = 'filter-random';
 const DISCUSSED = 'filter-discussed';
 const AMOUNT_RANDOM_PICTURE = 10;
-const TIMEOUT_DELAY = 500;
 
 const buttonsContainer = document.querySelector('.img-filters__form');
 const buttonsFilters = buttonsContainer.querySelectorAll('.img-filters__button');
@@ -52,34 +51,40 @@ const loadRandomPictures = (pictures) => {
   addPictures(randomPictures);
 };
 
-const setFilter = (pictures, cbDefault, cbRandom, cbDiscussed) => {
+export const setFilterClick = (cb) => {
   buttonsContainer.addEventListener('click', (evt) => {
     buttonsFilters.forEach((btn) => {
       btn.classList.remove('img-filters__button--active');
       if (evt.target.id === btn.id) {
         btn.classList.add('img-filters__button--active');
-        switch (evt.target.id) {
-          case DEFAULT:
-            cbDefault(pictures);
-            break;
-          case RANDOM:
-            cbRandom(pictures);
-            break;
-          case DISCUSSED:
-            cbDiscussed(pictures);
-            break;
-        }
       }
-    });
+    }
+    );
+    cb();
   });
+};
+
+export const loadPictures = (pictures) => {
+  const typeFilter = document.querySelector('.img-filters__button--active').id;
+  switch (typeFilter) {
+    case DEFAULT:
+      loadDefaultPictures(pictures);
+      break;
+    case RANDOM:
+      loadRandomPictures(pictures);
+      break;
+    case DISCUSSED:
+      loadDiscussedPictures(pictures);
+      break;
+  }
 };
 
 export const filterPhotos = (pictures) => {
   addPictures(pictures);
   setFilter(pictures,
-    debounce(() => loadDefaultPictures(pictures), TIMEOUT_DELAY),
-    debounce(() => loadRandomPictures(pictures), TIMEOUT_DELAY),
-    debounce(() => loadDiscussedPictures(pictures), TIMEOUT_DELAY));
+    loadDefaultPictures(pictures),
+    loadRandomPictures(pictures),
+    loadDiscussedPictures(pictures));
 };
 
 export const openFilters = () => {
